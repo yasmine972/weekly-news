@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Weekly News Feed</title>
+<style>
+  :root {
+    --bg: #161616; --card: #222222; --text: #e8e6e3; --muted: #9a9894;
+    --accent: #f0643c; --line: #3a3a3a;
+  }
+  @media (prefers-color-scheme: light) {
+    :root { --bg: #f6f5f2; --card: #ffffff; --text: #1f1f1f; --muted: #6b6966; --accent: #d9481f; --line: #e2e0dc; }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 17px/1.75 -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 32px 16px 80px; }
+  header h1 { font-size: 28px; margin: 0 0 4px; }
+  header p { color: var(--muted); margin: 0 0 20px; }
+  nav#toc { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+  nav#toc a {
+    color: var(--muted); text-decoration: none; font-size: 14px;
+    border: 1px solid var(--line); border-radius: 999px; padding: 2px 12px;
+  }
+  nav#toc a:hover { color: var(--accent); border-color: var(--accent); }
+  .issue { background: var(--card); border-radius: 20px; padding: 24px 22px; margin-bottom: 28px; }
+  .issue h2 { font-size: 21px; margin: 0; line-height: 1.4; }
+  .issue .date { color: var(--muted); margin: 4px 0 8px; font-size: 14px; }
+  .issue h3 {
+    font-size: 15px; color: var(--accent); letter-spacing: .05em;
+    margin: 28px 0 4px; padding-top: 16px; border-top: 1px solid var(--line);
+  }
+  article { padding: 12px 0; border-bottom: 1px dashed var(--line); }
+  article:last-of-type { border-bottom: 0; }
+  article h4 { font-size: 17px; margin: 0 0 6px; line-height: 1.5; }
+  article p { margin: 0 0 6px; }
+  .src { color: var(--muted); font-size: 15px; }
+  .src a { color: var(--accent); text-decoration: none; }
+  .src a:hover { text-decoration: underline; }
+  .thanks { color: var(--muted); font-size: 14px; margin-top: 20px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Weekly News Feed</h1>
+    <p>每周精选：AI 专区 · AI 工具 · 精选文章 · 新闻趣事</p>
+  </header>
+  <nav id="toc"></nav>
+  <main>
+<!-- ISSUES -->
+  </main>
+</div>
+<script>
+  // 自动生成往期目录（不用手动维护）
+  (function () {
+    var toc = document.getElementById('toc');
+    document.querySelectorAll('section.issue').forEach(function (s) {
+      var a = document.createElement('a');
+      var m = (s.querySelector('h2') || {}).textContent || s.id;
+      var n = m.match(/总\s*(\d+)\s*期/);
+      a.textContent = n ? '第 ' + n[1] + ' 期' : m;
+      a.href = '#' + s.id;
+      toc.appendChild(a);
+    });
+  })();
+</script>
+</body>
+</html>
